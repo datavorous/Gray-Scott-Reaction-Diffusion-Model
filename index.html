@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reaction-Diffusion Simulation</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        #canvas {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        #controls {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 10px;
+            border-radius: 5px;
+        }
+        select, button {
+            margin: 5px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <div id="controls">
+        <select id="patternSelect">
+            <option value="mixed">Mixed</option>
+            <option value="mitosis">Mitosis</option>
+            <option value="coralGrowth">Coral Growth</option>
+            <option value="fingerprint">Fingerprint</option>
+            <option value="spirals">Spirals</option>
+            <option value="worms">Worms</option>
+            <option value="maze">Maze</option>
+            <option value="bubbles">Bubbles</option>
+            <option value="spotsAndLoops">Spots and Loops</option>
+            <option value="waves">Waves</option>
+            <option value="splotches">Splotches</option>
+            <option value="solitions">Solitions</option>
+            <option value="dots">Dots</option>
+            <option value="stripes">Stripes</option>
+            <option value="crossWaves">Cross Waves</option>
+        </select>
+        <button id="pauseBtn">Pause</button>
+        <button id="resetBtn">Reset</button>
+    </div>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const pauseBtn = document.getElementById('pauseBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const patternSelect = document.getElementById('patternSelect');
+
+        const CELL_SIDE = 5;
+        let LEN_ROW, LEN_COLUMN;
+
+        let grid, temp_grid;
+        let pause = false;
+
+        const D_A = 1.0;
+        const D_B = 0.5;
+        let f = 0.022;
+        let k = 0.051;
+
+        const patterns = {
+            mixed: { f: 0.022, k: 0.051 },
+            mitosis: { f: 0.0367, k: 0.0649 },
+            coralGrowth: { f: 0.0545, k: 0.062 },
+            fingerprint: { f: 0.055, k: 0.062 },
+            spirals: { f: 0.018, k: 0.051 },
+            worms: { f: 0.078, k: 0.061 },
+            maze: { f: 0.029, k: 0.057 },
+            bubbles: { f: 0.098, k: 0.057 },
+            spotsAndLoops: { f: 0.039, k: 0.058 },
+            waves: { f: 0.014, k: 0.054 },
+            splotches: { f: 0.026, k: 0.051 },
+            solitions: { f: 0.03, k: 0.06 },
+            dots: { f: 0.05, k: 0.065 },
+            stripes: { f: 0.025, k: 0.06 },
+            crossWaves: { f: 0.012, k: 0.045 }
+        };
+
+        function initializeGrid() {
+            grid = Array(LEN_ROW).fill().map(() => Array(LEN_COLUMN).fill().map(() => ({ A: 1, B: 0 })));
+            temp_grid = Array(LEN_ROW).fill().map(() => Array(LEN_COLUMN).fill().map(() => ({ A: 1, B: 0 })));
+        }
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            LEN_ROW = Math.floor(canvas.width / CELL_SIDE);
+            LEN_COLUMN = Math.floor(canvas.height / CELL_SIDE);
+            initializeGrid();
+        }
+
+        function constrain(value, low, high) {
+            return value > high ? high : (value < low ? low : value);
+        }
+
+        function LaplacianFunc(x, y, type) {
+            const left = (x === 0) ? LEN_ROW - 1 : x - 1;
+            const right = (x === LEN_ROW - 1) ? 0 : x + 1;
+            const up = (y === 0) ? LEN_COLUMN - 1 : y - 1;
+            const down = (y === LEN_COLUMN - 1) ? 0 : y + 1;
+
+            return type ?
+                (0.2 * (grid[right][y].A + grid[left][y].A + grid[x][down].A + grid[x][up].A) +
+                 0.05 * (grid[left][up].A + grid[right][up].A + grid[left][down].A + grid[right][down].A) - grid[x][y].A) :
+                (0.2 * (grid[right][y].B + grid[left][y].B + grid[x][down].B + grid[x][up].B) +
+                 0.05 * (grid[left][up].B + grid[right][up].B + grid[left][down].B + grid[right][down].B) - grid[x][y].B);
+        }
+
+        function simulate() {
+            for (let row = 0; row < LEN_ROW; row++) {
+                for (let column = 0; column < LEN_COLUMN; column++) {
+                    temp_grid[row][column].A = constrain(grid[row][column].A + (D_A * LaplacianFunc(row, column, true) -
+                        grid[row][column].A * grid[row][column].B * grid[row][column].B + f * (1 - grid[row][column].A)), 0, 1);
+                    temp_grid[row][column].B = constrain(grid[row][column].B + (D_B * LaplacianFunc(row, column, false) +
+                        grid[row][column].A * grid[row][column].B * grid[row][column].B - (k + f) * grid[row][column].B), 0, 1);
+                }
+            }
+
+            for (let i = 0; i < LEN_ROW; i++) {
+                for (let j = 0; j < LEN_COLUMN; j++) {
+                    grid[i][j] = temp_grid[i][j];
+                    temp_grid[i][j] = { A: 1, B: 0 };
+                }
+            }
+        }
+
+        function drawGrid() {
+            for (let row = 0; row < LEN_ROW; row++) {
+                for (let column = 0; column < LEN_COLUMN; column++) {
+                    const value = constrain(255 - 255 * (grid[row][column].A - grid[row][column].B), 0, 255);
+                    ctx.fillStyle = `rgb(${value}, ${value}, ${value})`;
+                    ctx.fillRect(row * CELL_SIDE, column * CELL_SIDE, CELL_SIDE, CELL_SIDE);
+                }
+            }
+        }
+
+        function handleMouseInteraction(event) {
+            const rect = canvas.getBoundingClientRect();
+            const x = Math.floor((event.clientX - rect.left) / CELL_SIDE);
+            const y = Math.floor((event.clientY - rect.top) / CELL_SIDE);
+            
+            if (x >= 0 && x < LEN_ROW && y >= 0 && y < LEN_COLUMN) {
+                grid[x][y] = { A: 1, B: 1 };
+            }
+        }
+
+        function animate() {
+            if (!pause) simulate();
+            drawGrid();
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        canvas.addEventListener('mousedown', handleMouseInteraction);
+        canvas.addEventListener('mousemove', (event) => {
+            if (event.buttons === 1) handleMouseInteraction(event);
+        });
+        canvas.addEventListener('touchstart', (event) => {
+            event.preventDefault();
+            handleMouseInteraction(event.touches[0]);
+        });
+        canvas.addEventListener('touchmove', (event) => {
+            event.preventDefault();
+            handleMouseInteraction(event.touches[0]);
+        });
+
+        pauseBtn.addEventListener('click', () => {
+            pause = !pause;
+            pauseBtn.textContent = pause ? 'Resume' : 'Pause';
+        });
+
+        resetBtn.addEventListener('click', () => {
+            initializeGrid();
+        });
+
+        patternSelect.addEventListener('change', (event) => {
+            const pattern = patterns[event.target.value];
+            f = pattern.f;
+            k = pattern.k;
+            initializeGrid();
+        });
+
+        resizeCanvas();
+        animate();
+    </script>
+</body>
+</html>
