@@ -40,7 +40,7 @@ This project implements a Reaction-Diffusion simulation using the Gray-Scott mod
 - [Introduction](#introduction)
 - [Features](#features)
 - [Versions](#versions)
-  - [C++ Version](#c-version)
+  - [C Version](#c-version)
   - [Web Version](#web-version)
 - [Mathematical Model](#mathematical-model)
 - [Getting Started](#getting-started)
@@ -67,20 +67,20 @@ This project implements a Reaction-Diffusion simulation using the Gray-Scott mod
 - Real-time simulation of the Reaction-Diffusion process
 - Multiple pre-defined patterns (see [Changing Patterns](#changing-patterns))
 - Interactive controls (see [Controls](#controls))
-- Cross-platform support (C++ and Web versions)
+- Cross-platform support (C and Web versions)
 - Easy-to-use build system
 
 ## Versions
 
-### C++ Version
+### C Version
 
-The C++ version provides a high-performance simulation using the [Raylib](https://www.raylib.com/) graphics library. It offers:
+The C version provides a decent-performance simulation using the [Raylib](https://www.raylib.com/) graphics library. It offers:
 
-- Fast, real-time rendering
+- Decently fast, real-time rendering
 - Platform-native window and controls
 - Easy compilation and execution via batch file
 
-[Jump to C++ installation instructions](#installation)
+[Jump to C installation instructions](#installation)
 
 ### Web Version
 
@@ -125,7 +125,7 @@ Where:
    git clone https://github.com/datavorous/Gray-Scott-Reaction-Diffusion-Model.git
    ```
 
-2. For C++ version, install Raylib following the instructions on their [website](https://www.raylib.com/).
+2. For C version, install Raylib following the instructions on their [website](https://www.raylib.com/).
 
 3. The web version requires no additional installation.
 
@@ -147,7 +147,7 @@ Open the `index.html` file in your web browser, or visit the [online demo](https
 
 ### Changing Patterns
 
-To change patterns in the C++ version, modify the `f` and `k` values in the `main.cpp` file according to this table:
+To change patterns in the C version, modify the `f` and `k` values in the `main.cpp` file according to this table:
 
 | Pattern        | f       | k       |
 |----------------|---------|---------|
