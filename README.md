@@ -90,7 +90,7 @@ The web version allows for easy access and sharing of the simulation. Features i
 - Interactive UI for pattern selection and parameter adjustment
 - Responsive design for various screen sizes
 
-[Try the web version now](https://your-project-url.com/web-version)
+[Try the web version now](https://datavorous.github.io/Gray-Scott-Reaction-Diffusion-Model/)
 
 ## Mathematical Model
 
@@ -112,8 +112,8 @@ Where:
 
 ### Prerequisites
 
-- For C++ version:
-  - C++ compiler (supporting C++11 or later)
+- For C version:
+  - C compiler 
   - [Raylib](https://www.raylib.com/) graphics library
 - For Web version:
   - Modern web browser with JavaScript enabled
@@ -122,7 +122,7 @@ Where:
 
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/reaction-diffusion-simulation.git
+   git clone https://github.com/datavorous/Gray-Scott-Reaction-Diffusion-Model.git
    ```
 
 2. For C++ version, install Raylib following the instructions on their [website](https://www.raylib.com/).
@@ -133,11 +133,11 @@ Where:
 
 ### Running the Simulation
 
-#### C++ Version
+#### C Version
 Navigate and run the `build.bat` file, after placing the `libraylib.a` file inside the `lib/` folder. This will compile and run the simulation.
 
 #### Web Version
-Open the `index.html` file in your web browser, or visit the [online demo](https://your-project-url.com/web-version).
+Open the `index.html` file in your web browser, or visit the [online demo](https://datavorous.github.io/Gray-Scott-Reaction-Diffusion-Model/).
 
 ### Controls
 
@@ -197,8 +197,7 @@ We welcome contributions to the Reaction-Diffusion Simulation project! Here's ho
 
 ### Coding Standards
 
-- C++: Follow the [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html).
-- JavaScript: Adhere to the [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript).
+- Use the accepted and standard procedure for a given language.
 - Use 4 spaces for indentation.
 - Write clear, well-commented code.
 
@@ -225,17 +224,16 @@ Closes #123
 
 ## Possible Improvements
 
-1. Implement real-time parameter adjustment in C++ version
-2. Add 3D simulation capabilities
-3. Optimize for larger grids using GPU acceleration
-4. Implement more complex reaction-diffusion systems
+1. Implement real-time parameter adjustment in C version
+2. Add option to switch between different models
+3. More liquids?
+4. Optimize for larger grids using GPU acceleration
+5. Implement more complex reaction-diffusion systems
 
 ## FAQ
 
 Q: Why does the simulation slow down with larger grids?
 A: The computational complexity increases with grid size. Consider lowering the resolution or using a more powerful machine.
-
-[More FAQs](FAQ.md)
 
 ## References
 
