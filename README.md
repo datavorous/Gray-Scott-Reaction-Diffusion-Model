@@ -23,7 +23,6 @@ This project implements a Reaction-Diffusion simulation using the Gray-Scott mod
 - [Building and Running](#building-and-running)
 - [Contributing](#contributing)
 - [Possible Improvements](#possible-improvements)
-- [Troubleshooting](#troubleshooting)
 - [FAQ](#faq)
 - [References](#references)
 - [License](#license)
@@ -77,8 +76,6 @@ Where:
 - f is the feed rate
 - k is the kill rate
 - ∇² is the Laplace operator
-
-[Learn more about the implementation](#mathematical-model)
 
 ## Getting Started
 
@@ -151,11 +148,49 @@ reaction-diffusion-simulation/
 2. Double-click `build.bat` or run it from the command line
 3. The script will compile the code and launch the simulation
 
-If you encounter any issues, please check the [Troubleshooting](#troubleshooting) section.
-
 ## Contributing
 
-We welcome contributions! Please see our [Contribution Guidelines](CONTRIBUTING.md) for details on how to get started.
+We welcome contributions to the Reaction-Diffusion Simulation project! Here's how you can help:
+
+### Quick Start
+
+1. Fork the repo and create your branch from `main`.
+2. Make your changes, adhering to the best practises.
+3. Ensure your code passes all tests.
+4. Submit a pull request.
+
+### Reporting Issues
+
+- Check existing issues before creating a new one.
+- Provide detailed information: version, OS, steps to reproduce, expected vs. actual behavior.
+
+### Coding Standards
+
+- C++: Follow the [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html).
+- JavaScript: Adhere to the [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript).
+- Use 4 spaces for indentation.
+- Write clear, well-commented code.
+
+### Commit Messages
+
+Follow the [Conventional Commits](https://www.conventionalcommits.org/) specification:
+
+```
+type(scope): brief description
+
+Longer description if necessary
+
+Closes #123
+```
+
+### Testing
+
+- Write unit tests for new features or bug fixes.
+- Ensure all tests pass before submitting a PR.
+
+### Documentation
+
+- Update README.md and comments for significant changes.
 
 ## Possible Improvements
 
@@ -163,8 +198,6 @@ We welcome contributions! Please see our [Contribution Guidelines](CONTRIBUTING.
 2. Add 3D simulation capabilities
 3. Optimize for larger grids using GPU acceleration
 4. Implement more complex reaction-diffusion systems
-
-[See full list of planned improvements](https://github.com/yourusername/reaction-diffusion-simulation/projects)
 
 ## FAQ
 
@@ -176,8 +209,7 @@ A: The computational complexity increases with grid size. Consider lowering the 
 ## References
 
 1. [Pearson, J. E. (1993). Complex Patterns in a Simple System. Science, 261(5118), 189-192.](https://science.sciencemag.org/content/261/5118/189)
-2. [Gray, P., & Scott, S. K. (1984). Autocatalytic reactions in the isothermal, continuous stirred tank reactor. Chemical Engineering Science, 39(6), 1087-1097.](https://www.sciencedirect.com/science/article/pii/0009250984870177)
-3. [Turing, A. M. (1952). The Chemical Basis of Morphogenesis. Philosophical Transactions of the Royal Society B, 237(641), 37-72.](https://royalsocietypublishing.org/doi/10.1098/rstb.1952.0012)
+2. [Turing, A. M. (1952). The Chemical Basis of Morphogenesis. Philosophical Transactions of the Royal Society B, 237(641), 37-72.](https://royalsocietypublishing.org/doi/10.1098/rstb.1952.0012)
 
 ## License
 
