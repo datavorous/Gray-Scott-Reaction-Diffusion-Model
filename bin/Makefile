@@ -6,8 +6,8 @@ SRCDIR = ../src
 BINDIR = ../bin
 INCDIR = ../include
 
-SOURCES = $(wildcard $(SRCDIR)/*.cpp)
-OBJECTS = $(SOURCES:$(SRCDIR)/%.cpp=$(BINDIR)/%.o)
+SOURCES = $(wildcard $(SRCDIR)/*.c)
+OBJECTS = $(SOURCES:$(SRCDIR)/%.c=$(BINDIR)/%.o)
 TARGET = $(BINDIR)/game.exe
 
 $(TARGET): $(OBJECTS)
