@@ -1,8 +1,39 @@
 # Reaction-Diffusion Simulation
 
-![Reaction-Diffusion Simulation](https://i.imgur.com/vxuUP0U.mp4)
-
 This project implements a Reaction-Diffusion simulation using the Gray-Scott model, available in both C++ and web versions. It visualizes various patterns that emerge from the interaction of two virtual chemicals in a 2D grid.
+
+## Visual Demonstrations
+
+<table>
+  <tr>
+    <td width="33%">
+      <img src="imgs/mitosis.gif" alt="Mitosis Pattern" width="100%">
+      <p align="center"><em>Mitosis (Animated)</em></p>
+    </td>
+    <td width="33%">
+      <img src="imgs/mitosis.png" alt="Mitosis Pattern" width="100%">
+      <p align="center"><em>Mitosis (Static)</em></p>
+    </td>
+    <td width="33%">
+      <img src="imgs/corals.gif" alt="Coral Growth Pattern" width="100%">
+      <p align="center"><em>Coral Growth (Animated)</em></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="33%">
+      <img src="imgs/coral_img.png" alt="Coral Pattern" width="100%">
+      <p align="center"><em>Coral Pattern (Static)</em></p>
+    </td>
+    <td width="33%">
+      <img src="imgs/spiral_2.png" alt="Spiral Pattern" width="100%">
+      <p align="center"><em>Spiral Pattern 1</em></p>
+    </td>
+    <td width="33%">
+      <img src="imgs/spiral_img.png" alt="Spiral Pattern" width="100%">
+      <p align="center"><em>Spiral Pattern 2</em></p>
+    </td>
+  </tr>
+</table>
 
 ## Table of Contents
 
