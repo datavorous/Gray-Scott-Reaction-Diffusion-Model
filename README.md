@@ -1,6 +1,6 @@
 # Reaction-Diffusion Simulation
 
-This project implements a Reaction-Diffusion simulation using the Gray-Scott model, available in both C++ and web versions. It visualizes various patterns that emerge from the interaction of two virtual chemicals in a 2D grid.
+This project implements a Reaction-Diffusion simulation using the Gray-Scott model, available in both C and web versions. It visualizes various patterns that emerge from the interaction of two virtual chemicals in a 2D grid.
 
 ## Visual Demonstrations
 
